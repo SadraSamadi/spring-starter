@@ -8,15 +8,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public abstract class CoreControllerImp<E extends CoreEntity, S extends CoreService<E, ?>> implements CoreController<E> {
+public abstract class CoreControllerImp<E extends CoreEntity, S extends CoreService<E, ?>>
+  implements CoreController<E> {
 
   protected final S service;
 
-  protected CoreControllerDelegate<E, S> delegate;
+  private final CoreControllerDelegate<E, S> delegate;
 
   protected CoreControllerImp(S service) {
     this.service = service;
-    delegate = new CoreControllerDelegate<>(service);
+    this.delegate = new CoreControllerDelegate<>(service);
   }
 
   @Override

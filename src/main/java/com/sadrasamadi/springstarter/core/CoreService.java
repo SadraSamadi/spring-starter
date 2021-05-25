@@ -1,16 +1,18 @@
 package com.sadrasamadi.springstarter.core;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 public abstract class CoreService<E extends CoreEntity, R extends CoreRepository<E>> {
 
   protected final R repository;
+
+  protected CoreService(R repository) {
+    this.repository = repository;
+  }
 
   public E createOne(E e) {
     E created = create(e);

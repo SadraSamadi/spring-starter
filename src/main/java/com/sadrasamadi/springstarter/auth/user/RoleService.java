@@ -4,7 +4,6 @@ import com.sadrasamadi.springstarter.core.CoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,12 +14,8 @@ public class RoleService extends CoreService<RoleEntity, RoleRepository> {
     super(repository);
   }
 
-  public RoleEntity createOneByName(String name, List<PermissionEntity> permissions) {
-    RoleEntity role = RoleEntity.builder()
-      .name(name)
-      .permissions(permissions)
-      .build();
-    return createOne(role);
+  public RoleBuilder builder() {
+    return new RoleBuilder(this);
   }
 
   public RoleEntity findOneByName(String name) {

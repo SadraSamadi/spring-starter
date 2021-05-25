@@ -27,9 +27,9 @@ public class PermissionEntity extends CoreEntity {
   public String action;
 
   @Column
-  public boolean granted;
+  public boolean limited;
 
   @Column
-  public boolean limited;
+  public boolean granted;
 
 }

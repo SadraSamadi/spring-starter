@@ -20,7 +20,8 @@ public class RoleEntity extends CoreEntity {
   @Column(unique = true)
   private String name;
 
-  @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JoinColumn(name = "role_id")
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private List<PermissionEntity> permissions;
 
 }

@@ -1,6 +1,6 @@
-package com.sadrasamadi.springstarter.auth;
+package com.sadrasamadi.springstarter.auth.user;
 
-public interface AuthConstant {
+public interface PermissionConstant {
 
   String ALL = "*";
 

@@ -1,16 +1,18 @@
 package com.sadrasamadi.springstarter.core;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 public class CoreControllerDelegate<E extends CoreEntity, S extends CoreService<E, ?>> implements CoreController<E> {
 
   protected final S service;
+
+  public CoreControllerDelegate(S service) {
+    this.service = service;
+  }
 
   @Override
   public ResponseEntity<E> createOne(E e) {

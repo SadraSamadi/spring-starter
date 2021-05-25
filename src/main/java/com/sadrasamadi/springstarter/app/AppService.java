@@ -1,9 +1,6 @@
 package com.sadrasamadi.springstarter.app;
 
-import com.sadrasamadi.springstarter.auth.user.RoleEntity;
-import com.sadrasamadi.springstarter.auth.user.RoleService;
-import com.sadrasamadi.springstarter.auth.user.UserEntity;
-import com.sadrasamadi.springstarter.auth.user.UserService;
+import com.sadrasamadi.springstarter.auth.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -24,8 +21,18 @@ public class AppService implements ApplicationRunner {
 
   @Override
   public void run(ApplicationArguments args) {
-    RoleEntity adminRole = roleService.createOneByName("admin", null);
-    RoleEntity userRole = roleService.createOneByName("user", null);
+    RoleEntity adminRole = roleService.builder()
+      .name("admin")
+      .permission(PermissionConstant.ALL, PermissionConstant.ALL, false)
+      .build();
+    RoleEntity authorRole = roleService.builder()
+      .name("author")
+      .permission("posts", PermissionConstant.ALL, true)
+      .build();
+    RoleEntity userRole = roleService.builder()
+      .name("user")
+      .permission("posts", PermissionConstant.READ, false)
+      .build();
     UserEntity admin = UserEntity.builder()
       .username("admin")
       .email("info@admin.com")
@@ -34,6 +41,14 @@ public class AppService implements ApplicationRunner {
       .status(UserEntity.Status.ACTIVE)
       .build();
     userService.createOne(admin);
+    UserEntity author = UserEntity.builder()
+      .username("author")
+      .email("info@author.com")
+      .password("12345678")
+      .role(authorRole)
+      .status(UserEntity.Status.ACTIVE)
+      .build();
+    userService.createOne(author);
     UserEntity user = UserEntity.builder()
       .username("user")
       .email("info@user.com")
