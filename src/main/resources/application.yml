@@ -1,0 +1,24 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /api
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      javax.persistence.validation.mode: NONE
+  datasource:
+    name: spring_starter
+    username: spring_starter
+    password: secret
+    url: jdbc:postgresql://localhost:5432/spring_starter
+auth:
+  jwt:
+    prefix: Bearer
+    secret: 123456789
+    expiration: 2592000000
+logging:
+  file:
+    name: application.log
