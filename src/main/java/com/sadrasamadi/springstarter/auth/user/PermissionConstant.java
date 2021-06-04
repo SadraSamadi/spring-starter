@@ -4,12 +4,12 @@ public interface PermissionConstant {
 
   String ALL = "*";
 
-  String CREATE = "CREATE";
+  String CREATE = "create";
 
-  String READ = "READ";
+  String READ = "read";
 
-  String UPDATE = "UPDATE";
+  String UPDATE = "update";
 
-  String DELETE = "DELETE";
+  String DELETE = "delete";
 
 }

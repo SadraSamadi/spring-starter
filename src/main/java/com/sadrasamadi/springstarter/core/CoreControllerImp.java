@@ -15,9 +15,13 @@ public abstract class CoreControllerImp<E extends CoreEntity, S extends CoreServ
 
   private final CoreControllerDelegate<E, S> delegate;
 
-  protected CoreControllerImp(S service) {
+  protected CoreControllerImp(S service, CoreControllerDelegate<E, S> delegate) {
     this.service = service;
-    this.delegate = new CoreControllerDelegate<>(service);
+    this.delegate = delegate;
+  }
+
+  protected CoreControllerImp(S service) {
+    this(service, new CoreControllerDelegate<>(service));
   }
 
   @Override

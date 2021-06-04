@@ -12,8 +12,7 @@ public class RoleBuilder {
 
   private String name;
 
-  @SuppressWarnings("FieldMayBeFinal")
-  private List<PermissionEntity> permissions = new ArrayList<>();
+  private final List<PermissionEntity> permissions = new ArrayList<>();
 
   public RoleBuilder name(String name) {
     this.name = name;
@@ -24,8 +23,8 @@ public class RoleBuilder {
     PermissionEntity permission = PermissionEntity.builder()
       .feature(feature)
       .action(action)
-      .granted(granted)
       .limited(limited)
+      .granted(granted)
       .build();
     permissions.add(permission);
     return this;
